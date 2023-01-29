@@ -1,19 +1,20 @@
+
 from cgitb import text
 import json
 import sys
 import requests
 cookies = {
-    'mac': '00%3A1A%3A79%3A4f%3Aea%3A0c', 
+    'mac': '00%3A1A%3A79%3AC1%3A01%3A66', 
     'stb_lang': 'en',
     'timezone': 'Europe%2FParis',
 }
 
 headers = {
     'User-Agent': 'Mozilla/5.0 (QtEmbedded; U; Linux; C) AppleWebKit/533.3 (KHTML, like Gecko) MAG200 stbapp ver: 2 rev: 250 Safari/533.3',
-    'Referrer': 'http://92.204.40.153/stalker_portal/c/',
+    'Referrer': 'http://tv.tvzon.tv/stalker_portal/c/',
     'X-User-Agent': 'Model: MAG250; Link: WiFi',
     'Cache-Control': 'no-cache',
-    'Host': '92.204.40.153',
+    'Host': 'tv.tvzon.tv',
     'Connection': 'Keep-Alive',
     'Accept-Encoding': 'gzip',
 }
@@ -25,24 +26,24 @@ params = (
     ('JsHttpRequest', '1-xml'),
 )
 
-response = requests.get('http://92.204.40.153/stalker_portal/server/load.php', headers=headers, params=params, cookies=cookies)
+response = requests.get('http://tv.tvzon.tv/stalker_portal/server/load.php', headers=headers, params=params, cookies=cookies)
 json_object = json.loads(response.text)
 json_object2=json_object["js"]
 token=json_object2["token"]
 random=json_object2["random"]
 # print(token,random)
 Bearer=c='Bearer'+ " "+token
-metrics='{"mac":"00:1A:79:4f:ea:0c","sn":"","model":"MAG250","type":"STB","uid":"","random":"'+random+'"}'
+metrics='{"mac":"00:1A:79:C1:01:66","sn":"","model":"MAG250","type":"STB","uid":"","random":"'+random+'"}'
 
 headers = {
     'Accept': '/',
     'User-Agent': 'Mozilla/5.0 (QtEmbedded; U; Linux; C) AppleWebKit/533.3 (KHTML, like Gecko) MAG200 stbapp ver: 4 rev: 2721 Mobile Safari/533.3',
-    'Referer': 'http://92.204.40.153/stalker_portal/c/',
+    'Referer': 'http://tv.tvzon.tv/stalker_portal/c/',
     'Accept-Language': 'en-US,',
     'Accept-Charset': 'UTF-8,;q=0.8',
     'X-User-Agent': 'Model: MAG254; Link: WiFi',
     'Authorization': c,
-    'Host': '92.204.40.153',
+    'Host': 'tv.tvzon.tv',
     'Connection': 'Keep-Alive',
     'Accept-Encoding': 'gzip',
 }
@@ -50,7 +51,7 @@ params = (
     ('', ''),
     ('action', 'get_profile'),
     ('random', random),
-    ('mac', '00:1A:79:4f:ea:0c'),
+    ('mac', '00:1A:79:C1:01:66'),
     ('type', 'stb'),
     ('hd', '1'),
     ('sn', ''),
@@ -66,7 +67,7 @@ params = (
     ('metrics', metrics),
     ('ver', 'ImageDescription: 0.2.18-r14-pub-250; ImageDate: Fri Jan 15 15:20:44 EET 2016; PORTAL version: 5.6.1; API Version: JS API version: 328; STB API version: 134; Player Engine version: 0x566'),
 )
-response = requests.get('http://92.204.40.153/stalker_portal/server/load.php', headers=headers, params=params, cookies=cookies)
+response = requests.get('http://tv.tvzon.tv/stalker_portal/server/load.php', headers=headers, params=params, cookies=cookies)
 
 params = (
     ('type', 'itv'),
@@ -75,7 +76,7 @@ params = (
     ('download', '0'),
     ('cmd', 'ffrt http://localhost/ch/'+sys.argv[1]),
 )
-response = requests.get('http://92.204.40.153/stalker_portal/server/load.php', headers=headers, params=params, cookies=cookies)
+response = requests.get('http://tv.tvzon.tv/stalker_portal/server/load.php', headers=headers, params=params, cookies=cookies)
 json_object = json.loads(response.text)
 # print(response.text)
 json_object2=json_object["js"]
@@ -85,3 +86,7 @@ t=channel_link.replace("\\/","/")
 URL = t
 t+='"'
 print(t)
+
+
+
+
